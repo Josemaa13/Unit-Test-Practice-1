@@ -23,6 +23,7 @@ class testBankAccount(unittest.TestCase):
       statement = self.poor.get_statement()
       self.assertEqual(statement[0].kind, "deposit")
       
+      
       with self.assertRaises(ValueError):
          self.poor.withdraw(Decimal("10.00"))
       

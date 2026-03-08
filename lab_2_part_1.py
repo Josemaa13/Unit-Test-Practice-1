@@ -315,79 +315,9 @@ class ShoppingCart:
         return tuple(self._items.values())
 
 
-# ----------------------------
-# 6) Matrix2x2
-# ----------------------------
-
-class Vector2:
-    __slots__ = ("x", "y")
-
-    def __init__(self, x: float, y: float) -> None:
-        self.x = float(x)
-        self.y = float(y)
-
-    def __repr__(self) -> str:
-        return f"Vector2(x={self.x!r}, y={self.y!r})"
-
-    def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Vector2):
-            return False
-        return self.x == other.x and self.y == other.y
-
-
-class Matrix2x2:
-    __slots__ = ("a", "b", "c", "d")
-
-    def __init__(self, a: float, b: float, c: float, d: float) -> None:
-        self.a = float(a)
-        self.b = float(b)
-        self.c = float(c)
-        self.d = float(d)
-
-    def determinant(self) -> float:
-        return self.a * self.d - self.b * self.c
-
-    def multiply(self, other: "Matrix2x2") -> "Matrix2x2":
-        if not isinstance(other, Matrix2x2):
-            raise TypeError("other must be Matrix2x2")
-        return Matrix2x2(
-            a=self.a * other.a + self.b * other.c,
-            b=self.a * other.b + self.b * other.d,
-            c=self.c * other.a + self.d * other.c,
-            d=self.c * other.b + self.d * other.d,
-        )
-
-    def apply_to(self, v: Vector2) -> Vector2:
-        if not isinstance(v, Vector2):
-            raise TypeError("v must be Vector2")
-        return Vector2(
-            x=self.a * v.x + self.b * v.y,
-            y=self.c * v.x + self.d * v.y,
-        )
-
-    def inverse(self) -> "Matrix2x2":
-        det = self.determinant()
-        if det == 0:
-            raise ValueError("singular_matrix")
-        inv_det = 1.0 / det
-        return Matrix2x2(
-            a=self.d * inv_det,
-            b=-self.b * inv_det,
-            c=-self.c * inv_det,
-            d=self.a * inv_det,
-        )
-
-    def __repr__(self) -> str:
-        return f"Matrix2x2(a={self.a!r}, b={self.b!r}, c={self.c!r}, d={self.d!r})"
-
-    def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Matrix2x2):
-            return False
-        return (self.a, self.b, self.c, self.d) == (other.a, other.b, other.c, other.d)
-
 
 # ----------------------------
-# 7) LRUCache
+# 6) LRUCache
 # ----------------------------
 
 K = TypeVar("K")
