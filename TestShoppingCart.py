@@ -5,9 +5,6 @@ from decimal import Decimal
 
 class TestShoppingCart(unittest.TestCase):
     def setUp(self):
-        apple = CartItem("1a234", Decimal("3.25"), 1)
-        salad = CartItem("12b34", Decimal("5.65"), 1)
-        bread = CartItem("123c4", Decimal("10.25"), 4)
         self.carrito_1 = ShoppingCart(Decimal("1.10"))
 
     def test_init(self):
